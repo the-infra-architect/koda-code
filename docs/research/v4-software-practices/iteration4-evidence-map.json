@@ -1,0 +1,37 @@
+{
+  "compatibility": [
+    "C046",
+    "C047",
+    "C048",
+    "C049"
+  ],
+  "supply_chain": [
+    "C050",
+    "C051",
+    "C052",
+    "C053",
+    "C054",
+    "C055",
+    "C067"
+  ],
+  "secure_defaults": [
+    "C056",
+    "C057",
+    "C058",
+    "C068"
+  ],
+  "input_error_logging": [
+    "C059",
+    "C060"
+  ],
+  "data_integrity": [
+    "C061",
+    "C062",
+    "C066"
+  ],
+  "distributed_patterns": [
+    "C063",
+    "C064",
+    "C065"
+  ]
+}

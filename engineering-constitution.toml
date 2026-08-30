@@ -1,0 +1,23 @@
+[principles]
+primary = "Use the least complex solution that fully satisfies the actual requirements."
+complexity = "Complexity is permitted; unjustified complexity is not."
+evidence_before_architecture = true
+honor_explicit_constraints = true
+beginner_questions_use_product_language = true
+frameworks_are_workload_selected = true
+dependencies_require_justification = true
+security_is_normal_engineering = true
+resource_awareness_is_required = true
+verification_precedes_completion = true
+
+[storage]
+database_required_by_default = false
+prefer_duckdb_for_embedded_analytics = true
+force_duckdb = false
+operational_storage_follows_workload = true
+
+[delivery]
+protected_branches = ["main", "master", "trunk", "production"]
+pull_request_preferred = true
+force_push_allowed = false
+explicit_staging_required = true

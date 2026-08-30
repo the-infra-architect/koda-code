@@ -1,0 +1,72 @@
+{
+  "architecture_quality": [
+    "C001",
+    "C002",
+    "C003"
+  ],
+  "review_readability": [
+    "C004",
+    "C005",
+    "C007",
+    "C008",
+    "C009"
+  ],
+  "testing": [
+    "C010",
+    "C011",
+    "C012",
+    "C013",
+    "C014"
+  ],
+  "security": [
+    "C015",
+    "C016",
+    "C017",
+    "C018",
+    "C019",
+    "C020"
+  ],
+  "git_delivery": [
+    "C006",
+    "C021",
+    "C022",
+    "C024",
+    "C042"
+  ],
+  "dependencies_reproducibility": [
+    "C023",
+    "C025",
+    "C038",
+    "C039",
+    "C045"
+  ],
+  "performance_reliability": [
+    "C026",
+    "C027",
+    "C028"
+  ],
+  "storage_data": [
+    "C029",
+    "C030",
+    "C031",
+    "C032",
+    "C033",
+    "C034"
+  ],
+  "monorepo": [
+    "C035"
+  ],
+  "accessibility": [
+    "C036"
+  ],
+  "user_questions": [
+    "C037"
+  ],
+  "sonar_static": [
+    "C041"
+  ],
+  "greenfield_adoption": [
+    "C043",
+    "C044"
+  ]
+}

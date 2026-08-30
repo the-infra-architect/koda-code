@@ -1,0 +1,223 @@
+{
+  "name": "koda-code-vscode",
+  "displayName": "Koda-Code",
+  "description": "Run Koda V4's adaptive, evidence-backed engineering workflow from VS Code.",
+  "version": "0.4.0",
+  "publisher": "koda-code",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.134.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "copilot",
+    "agents",
+    "engineering",
+    "quality"
+  ],
+  "activationEvents": [
+    "onLanguageModelTool:koda-code_project",
+    "onLanguageModelTool:koda-code_begin",
+    "onLanguageModelTool:koda-code_answer",
+    "onLanguageModelTool:koda-code_status",
+    "onLanguageModelTool:koda-code_evidence",
+    "onLanguageModelTool:koda-code_record",
+    "onLanguageModelTool:koda-code_check"
+  ],
+  "main": "./dist/src/extension.js",
+  "files": [
+    "dist/src/**",
+    "agents/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "compile": "tsc -p tsconfig.json",
+    "check": "npm run clean && npm run compile && npm run lint && npm test",
+    "lint": "eslint src test",
+    "test": "node --test dist/test/*.test.js",
+    "package": "vsce package --no-dependencies --allow-missing-repository --out dist/koda-code-vscode.vsix"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Koda-Code",
+      "properties": {
+        "koda.enginePath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional path to a trusted Koda 0.4+ executable. Relative paths are resolved from the selected workspace."
+        },
+        "koda.engineTimeoutSeconds": {
+          "type": "number",
+          "default": 300,
+          "minimum": 1,
+          "maximum": 1800,
+          "description": "Maximum time for one Koda engine invocation."
+        }
+      }
+    },
+    "chatAgents": [
+      { "path": "./agents/koda.agent.md" },
+      { "path": "./agents/engineer.agent.md" },
+      { "path": "./agents/ui-ux.agent.md" },
+      { "path": "./agents/tester.agent.md" },
+      { "path": "./agents/reviewer.agent.md" },
+      { "path": "./agents/debugger.agent.md" }
+    ],
+    "languageModelTools": [
+      {
+        "name": "koda-code_project",
+        "displayName": "Inspect Koda Project",
+        "modelDescription": "Inspect a workspace repository and list its authoritative Koda V4 mission states, engineering profile, and adaptive quality contract. Read-only. Use before beginning or resuming a mission.",
+        "userDescription": "Inspect the selected project and its Koda missions",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaProject",
+        "icon": "$(project)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string",
+              "description": "Workspace folder or nested repository path. Required when multiple workspace folders are open."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "koda-code_begin",
+        "displayName": "Begin Koda Mission",
+        "modelDescription": "Create one authoritative Koda V4 mission, engineering profile, adaptive quality contract, and isolated Git worktree. Mutates only Koda state and the new worktree/branch; never installs software or pushes.",
+        "userDescription": "Create an isolated Koda engineering mission",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaBegin",
+        "icon": "$(git-branch-create)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "request": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20000,
+              "description": "The user's requested software outcome."
+            },
+            "repository": {
+              "type": "string",
+              "description": "Workspace folder or nested repository path."
+            }
+          },
+          "required": ["request"],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "koda-code_answer",
+        "displayName": "Answer Koda Clarification",
+        "modelDescription": "Record the user's answer to the next authoritative product-language question for a mission. Rejects answers when no question is pending.",
+        "userDescription": "Record the user's next Koda clarification",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaAnswer",
+        "icon": "$(comment-discussion)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "missionId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "repository": { "type": "string" },
+            "answer": { "type": "string", "minLength": 1, "maxLength": 4000 }
+          },
+          "required": ["missionId", "answer"],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "koda-code_status",
+        "displayName": "Read Koda Mission Status",
+        "modelDescription": "Read authoritative V4 mission stages, remediation count, next specialist, deterministic checks, engineering profile, adaptive capability states, stale-evidence state, and ready-to-finish eligibility. Read-only; unknown and unavailable are not passes.",
+        "userDescription": "Read authoritative Koda mission progress",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaStatus",
+        "icon": "$(pulse)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "missionId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "repository": { "type": "string" }
+          },
+          "required": ["missionId"],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "koda-code_evidence",
+        "displayName": "Read Koda Git Evidence",
+        "modelDescription": "Read bounded Git diff, changed paths, branch, head, staging state, fingerprints, and quality results for a mission worktree. Read-only.",
+        "userDescription": "Read bounded evidence from a Koda mission worktree",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaEvidence",
+        "icon": "$(diff)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "missionId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "repository": { "type": "string" }
+          },
+          "required": ["missionId"],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "koda-code_record",
+        "displayName": "Record Verified Koda Result",
+        "modelDescription": "Record one assigned specialist result only after the Python engine validates current Git and quality evidence. Read-only roles require the prior evidence fingerprint. Controls bounded remediation state.",
+        "userDescription": "Record a specialist result with deterministic evidence",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaRecord",
+        "icon": "$(checklist)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "missionId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "repository": { "type": "string" },
+            "agent": { "type": "string", "enum": ["engineer", "ui_ux", "tester", "reviewer", "debugger"] },
+            "outcome": { "type": "string", "enum": ["passed", "needs_work", "blocked"] },
+            "note": { "type": "string", "minLength": 1, "maxLength": 4000 },
+            "evidenceFingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+            "unclearFailure": { "type": "boolean", "default": false }
+          },
+          "required": ["missionId", "agent", "outcome", "note"],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "koda-code_check",
+        "displayName": "Run Koda Quality Gate",
+        "modelDescription": "Re-resolve stale V4 engineering evidence, then run only deterministic argv-based checks configured in koda-code.toml inside the mission worktree. Detects check-caused Git changes. Never uses a shell; unavailable verification is not a pass.",
+        "userDescription": "Run the project's deterministic Koda quality gate",
+        "canBeReferencedInPrompt": true,
+        "toolReferenceName": "kodaCheck",
+        "icon": "$(beaker)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "missionId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "repository": { "type": "string" }
+          },
+          "required": ["missionId"],
+          "additionalProperties": false
+        }
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "@types/vscode": "^1.134.0",
+    "@vscode/vsce": "^3.9.2",
+    "eslint": "^10.9.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.68.0"
+  }
+}

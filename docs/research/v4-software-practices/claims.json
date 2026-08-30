@@ -1,0 +1,880 @@
+[
+  {
+    "id": "C001",
+    "claim": "Software quality is multidimensional; Koda must not reduce quality to one simplicity/complexity score.",
+    "sources": [
+      "S001",
+      "S002",
+      "S003"
+    ],
+    "confidence": "A/B",
+    "caveat": "Different quality attributes can conflict.",
+    "koda_implication": "Profile relevant quality attributes before architecture.",
+    "status": "supported"
+  },
+  {
+    "id": "C002",
+    "claim": "Architecture should be the least complex design that satisfies the important quality attributes and constraints of the actual project.",
+    "sources": [
+      "S002",
+      "S003",
+      "S005"
+    ],
+    "confidence": "B",
+    "caveat": "Complexity can be justified by scale, reliability, ownership, security, compatibility, or other requirements.",
+    "koda_implication": "Prefer proportional engineering, not minimal component count.",
+    "status": "supported"
+  },
+  {
+    "id": "C003",
+    "claim": "Maintainability and modifiability are architectural concerns, not only formatter/style concerns.",
+    "sources": [
+      "S004",
+      "S005"
+    ],
+    "confidence": "B",
+    "caveat": "Exact structural tactics depend on the codebase.",
+    "koda_implication": "Reviewer should reason about coupling/cohesion/change cost when relevant.",
+    "status": "supported"
+  },
+  {
+    "id": "C004",
+    "claim": "Review should consider design, functionality, complexity, tests, naming, documentation, and maintainability.",
+    "sources": [
+      "S006"
+    ],
+    "confidence": "B",
+    "caveat": "Review process details vary.",
+    "koda_implication": "Keep Reviewer broad but evidence-focused.",
+    "status": "supported"
+  },
+  {
+    "id": "C005",
+    "claim": "Review should challenge unnecessary complexity/speculative functionality but should not demand theoretical perfection.",
+    "sources": [
+      "S006",
+      "S007",
+      "S009"
+    ],
+    "confidence": "B",
+    "caveat": "Critical systems may need stricter acceptance.",
+    "koda_implication": "Separate blocking defects from optional improvements.",
+    "status": "supported"
+  },
+  {
+    "id": "C006",
+    "claim": "Short-lived, focused changes generally improve reviewability, rollback, and integration.",
+    "sources": [
+      "S008",
+      "S025"
+    ],
+    "confidence": "B",
+    "caveat": "Some migrations/refactors are necessarily larger.",
+    "koda_implication": "Keep Koda mission branches/worktrees scoped and short-lived.",
+    "status": "supported"
+  },
+  {
+    "id": "C007",
+    "claim": "Readable code favors clarity, descriptive names, project/ecosystem consistency, and abstractions that map to the problem.",
+    "sources": [
+      "S009",
+      "S010"
+    ],
+    "confidence": "B",
+    "caveat": "Language idioms differ.",
+    "koda_implication": "Prefer existing project conventions over Koda-specific style.",
+    "status": "supported"
+  },
+  {
+    "id": "C008",
+    "claim": "There is insufficient evidence for universal hard limits on function size, class size, interface implementation count, or cognitive/cyclomatic complexity.",
+    "sources": [
+      "S006",
+      "S009"
+    ],
+    "confidence": "C",
+    "caveat": "Metrics can still be useful signals.",
+    "koda_implication": "Do not encode arbitrary hard structural thresholds unless project policy supplies them.",
+    "status": "supported inference"
+  },
+  {
+    "id": "C009",
+    "claim": "Documentation should be accurate, useful, proportional, and updated with behavior/setup changes.",
+    "sources": [
+      "S011"
+    ],
+    "confidence": "B",
+    "caveat": "Public/regulatory contexts may need more.",
+    "koda_implication": "Avoid generating large boilerplate docs for tiny changes.",
+    "status": "supported"
+  },
+  {
+    "id": "C010",
+    "claim": "Test strategy should be risk/context driven; no universal test count or coverage percentage establishes sufficiency.",
+    "sources": [
+      "S012",
+      "S013",
+      "S014",
+      "S015"
+    ],
+    "confidence": "B",
+    "caveat": "Project/org policy may impose thresholds.",
+    "koda_implication": "Build test plan from behavior/risk and preserve existing thresholds.",
+    "status": "supported"
+  },
+  {
+    "id": "C011",
+    "claim": "Unit, integration, E2E, and nonfunctional tests cover different risks; E2E should focus on critical journeys rather than replace lower-level tests.",
+    "sources": [
+      "S012",
+      "S013"
+    ],
+    "confidence": "B",
+    "caveat": "Taxonomy varies by ecosystem.",
+    "koda_implication": "Resolve test layers from architecture and risk.",
+    "status": "supported"
+  },
+  {
+    "id": "C012",
+    "claim": "Automated tests should be fast/reliable where practical; flaky tests erode trust and should not be normalized.",
+    "sources": [
+      "S012",
+      "S015"
+    ],
+    "confidence": "B",
+    "caveat": "Some expensive suites run less often.",
+    "koda_implication": "Koda should distinguish fast merge gates from slower optional/scheduled checks.",
+    "status": "supported"
+  },
+  {
+    "id": "C013",
+    "claim": "Coverage is useful as a gap/risk signal but is not proof of code quality.",
+    "sources": [
+      "S014",
+      "S015"
+    ],
+    "confidence": "B",
+    "caveat": "Explicit project thresholds still matter.",
+    "koda_implication": "Never invent a universal Koda coverage percentage.",
+    "status": "supported"
+  },
+  {
+    "id": "C014",
+    "claim": "Mutation testing has demonstrated value for finding test weakness but should be selective due cost/complexity.",
+    "sources": [
+      "S016"
+    ],
+    "confidence": "B/C",
+    "caveat": "Best for critical logic/mature suites or existing tooling.",
+    "koda_implication": "Do not add mutation testing to every repo.",
+    "status": "supported"
+  },
+  {
+    "id": "C015",
+    "claim": "Security practices should be integrated into normal development rather than appended only at release.",
+    "sources": [
+      "S017",
+      "S018"
+    ],
+    "confidence": "A",
+    "caveat": "Specific controls depend on threat surface/risk.",
+    "koda_implication": "Security belongs in engineering profile and quality contract.",
+    "status": "supported"
+  },
+  {
+    "id": "C016",
+    "claim": "Security verification techniques should be selected based on applicability: threat modeling, tests, static scanning, secret checks, fuzzing, web scanners, and included-component analysis are not equally relevant everywhere.",
+    "sources": [
+      "S018",
+      "S020"
+    ],
+    "confidence": "A/B",
+    "caveat": "NIST explicitly scopes some techniques such as web scanners as applicable-only.",
+    "koda_implication": "Build a threat-surface resolver.",
+    "status": "supported"
+  },
+  {
+    "id": "C017",
+    "claim": "Web application security is stronger when expressed as testable requirements rather than vague 'secure code' instructions.",
+    "sources": [
+      "S019"
+    ],
+    "confidence": "A/B",
+    "caveat": "ASVS is web/service scoped.",
+    "koda_implication": "Use ASVS-informed checks for exposed web systems where appropriate.",
+    "status": "supported"
+  },
+  {
+    "id": "C018",
+    "claim": "Secrets should not be hard-coded or logged; sophistication of secret storage should match the environment.",
+    "sources": [
+      "S021"
+    ],
+    "confidence": "A/B",
+    "caveat": "Local tools may use OS/user config rather than enterprise vaults.",
+    "koda_implication": "Never compensate for missing infrastructure by committing secrets.",
+    "status": "supported"
+  },
+  {
+    "id": "C019",
+    "claim": "Software component/supply-chain controls should be risk based; Koda must not invent legal/license/risk-acceptance policy.",
+    "sources": [
+      "S022",
+      "S031"
+    ],
+    "confidence": "A/B",
+    "caveat": "Acceptability can be organization-specific.",
+    "koda_implication": "Detect/report component risk; respect provided organization policy.",
+    "status": "supported"
+  },
+  {
+    "id": "C020",
+    "claim": "AI-generated code and AI self-reports require independent deterministic verification.",
+    "sources": [
+      "S023",
+      "S024"
+    ],
+    "confidence": "A/B",
+    "caveat": "Do not generalize study defect percentages.",
+    "koda_implication": "Git/filesystem/tests/static checks remain sources of truth.",
+    "status": "supported"
+  },
+  {
+    "id": "C021",
+    "claim": "Continuous delivery means keeping software releasable and does not require automatic production deployment.",
+    "sources": [
+      "S026"
+    ],
+    "confidence": "B",
+    "caveat": "Some products have no hosted deployment at all.",
+    "koda_implication": "Koda may stop at VERIFIED/READY TO FINISH.",
+    "status": "supported"
+  },
+  {
+    "id": "C022",
+    "claim": "Artifacts needed to reproduce software\u2014code, tests, build/config, migrations, and relevant agent/prompt config\u2014should be versioned or otherwise traceable.",
+    "sources": [
+      "S027"
+    ],
+    "confidence": "B",
+    "caveat": "Large binaries may live outside Git.",
+    "koda_implication": "Avoid undocumented machine-local build magic.",
+    "status": "supported"
+  },
+  {
+    "id": "C023",
+    "claim": "Dependency state and build/install behavior should be traceable/reproducible using the project's own ecosystem mechanisms.",
+    "sources": [
+      "S028",
+      "S047",
+      "S048",
+      "S049",
+      "S050",
+      "S051"
+    ],
+    "confidence": "B",
+    "caveat": "Different ecosystems have different lock/build semantics.",
+    "koda_implication": "Detect and preserve package manager/lock strategy.",
+    "status": "supported"
+  },
+  {
+    "id": "C024",
+    "claim": "Third-party GitHub Actions can be security-sensitive; immutable pinning is a GitHub-specific strong practice when generating workflows.",
+    "sources": [
+      "S030"
+    ],
+    "confidence": "A",
+    "caveat": "GitHub Actions-specific; project/org policy may control updating.",
+    "koda_implication": "Do not generalize GitHub action mechanics to other CI systems.",
+    "status": "supported"
+  },
+  {
+    "id": "C025",
+    "claim": "Static/dependency security tools are capability- and language-dependent; their absence may reflect unsupported ecosystem or platform plan, not engineering negligence.",
+    "sources": [
+      "S031",
+      "S032"
+    ],
+    "confidence": "A",
+    "caveat": "Other tools may fill the role.",
+    "koda_implication": "Resolve security capability rather than assume one named service.",
+    "status": "supported"
+  },
+  {
+    "id": "C026",
+    "claim": "Performance/resource efficiency should be considered early enough to avoid obvious bad designs, but complex optimization should be driven by realistic targets and measurement.",
+    "sources": [
+      "S036"
+    ],
+    "confidence": "B",
+    "caveat": "Measurement strategy varies.",
+    "koda_implication": "Fix obvious N+1/O(n\u00b2)/materialization issues; profile before caches/queues/concurrency.",
+    "status": "supported"
+  },
+  {
+    "id": "C027",
+    "claim": "Retries belong only around likely transient failures and should be bounded with timeout/backoff/idempotency awareness.",
+    "sources": [
+      "S037"
+    ],
+    "confidence": "B",
+    "caveat": "Remote/distributed dependencies only.",
+    "koda_implication": "Do not create generic retry wrappers for every failure.",
+    "status": "supported"
+  },
+  {
+    "id": "C028",
+    "claim": "Observability should be proportional and actionable; not every program needs logs+metrics+traces.",
+    "sources": [
+      "S035"
+    ],
+    "confidence": "B/C",
+    "caveat": "Services and long-running systems need more operational signals than one-off tools.",
+    "koda_implication": "Derive observability from runtime/operational lifecycle.",
+    "status": "supported"
+  },
+  {
+    "id": "C029",
+    "claim": "Persistent valuable data requires recovery/backup consideration proportional to loss impact.",
+    "sources": [
+      "S045"
+    ],
+    "confidence": "A/B",
+    "caveat": "Mechanism is datastore-specific.",
+    "koda_implication": "Storage choice includes recovery, not only query API.",
+    "status": "supported"
+  },
+  {
+    "id": "C030",
+    "claim": "Schema changes in live databases can impose locking/availability risk and should be treated differently from ordinary source edits.",
+    "sources": [
+      "S046"
+    ],
+    "confidence": "A/C",
+    "caveat": "Evidence is PostgreSQL-specific; exact semantics vary.",
+    "koda_implication": "Preserve existing migration tool and assess data/concurrency/downtime.",
+    "status": "supported"
+  },
+  {
+    "id": "C031",
+    "claim": "DuckDB is optimized for embedded analytical/OLAP workloads and is not a universal transactional database.",
+    "sources": [
+      "S038",
+      "S041"
+    ],
+    "confidence": "A",
+    "caveat": "DuckDB capabilities are evolving.",
+    "koda_implication": "Prefer it when workload matches; do not force it from personal preference.",
+    "status": "supported"
+  },
+  {
+    "id": "C032",
+    "claim": "Native read-write DuckDB databases should not be placed on NAS/NFS/SMB/Samba by default.",
+    "sources": [
+      "S040"
+    ],
+    "confidence": "A",
+    "caveat": "Read-only remote data, cloud block disks, DuckLake, and future versions differ.",
+    "koda_implication": "Shared-folder requirement must trigger storage topology reasoning.",
+    "status": "supported"
+  },
+  {
+    "id": "C033",
+    "claim": "Direct shared database files on network filesystems carry locking/sync risks beyond DuckDB; SQLite documentation independently warns about this architecture.",
+    "sources": [
+      "S042",
+      "S043"
+    ],
+    "confidence": "A",
+    "caveat": "Exact failure modes vary by filesystem/database.",
+    "koda_implication": "Prefer central application/server ownership for shared multi-machine writes.",
+    "status": "supported"
+  },
+  {
+    "id": "C034",
+    "claim": "Multi-writer transactional concurrency is an architectural requirement; client/server databases such as PostgreSQL explicitly support multi-session concurrency controls.",
+    "sources": [
+      "S042",
+      "S044"
+    ],
+    "confidence": "A",
+    "caveat": "PostgreSQL is one candidate, not a universal answer.",
+    "koda_implication": "Ask/derive writer topology and consistency needs before datastore selection.",
+    "status": "supported"
+  },
+  {
+    "id": "C035",
+    "claim": "Existing monorepo graph/affected tooling should normally be reused instead of Koda inventing a second dependency graph.",
+    "sources": [
+      "S058"
+    ],
+    "confidence": "B/C",
+    "caveat": "Shared config/lock changes can broaden impact.",
+    "koda_implication": "Use Nx/Turbo/native workspace mechanisms first, widen conservatively when needed.",
+    "status": "supported"
+  },
+  {
+    "id": "C036",
+    "claim": "Web UI accessibility should use testable standards and native semantics where possible.",
+    "sources": [
+      "S059",
+      "S060"
+    ],
+    "confidence": "A",
+    "caveat": "Web UI-specific.",
+    "koda_implication": "UI/UX agent must cover accessibility/interaction, not just visual polish.",
+    "status": "supported"
+  },
+  {
+    "id": "C037",
+    "claim": "Questions for nontechnical users should use language they understand, focus on outcomes, and request only information that is genuinely needed.",
+    "sources": [
+      "S061",
+      "S062"
+    ],
+    "confidence": "B",
+    "caveat": "Service-design source should later be validated with Koda user studies.",
+    "koda_implication": "Translate technical uncertainty into product-language questions.",
+    "status": "supported"
+  },
+  {
+    "id": "C038",
+    "claim": "Existing project conventions/configuration should normally outrank Koda preferences.",
+    "sources": [
+      "S047",
+      "S049",
+      "S050",
+      "S052",
+      "S053",
+      "S054",
+      "S055",
+      "S056",
+      "S057"
+    ],
+    "confidence": "B",
+    "caveat": "Broken/unsafe tooling or explicit migration requests are exceptions.",
+    "koda_implication": "Inspect repo and native lifecycle before adding/replacing tools.",
+    "status": "supported"
+  },
+  {
+    "id": "C039",
+    "claim": "No universal quality toolchain is appropriate across Python, JS/TS, JVM, .NET, Rust, Go, monorepos, local apps, and services.",
+    "sources": [
+      "S047",
+      "S049",
+      "S050",
+      "S053",
+      "S055",
+      "S056",
+      "S057"
+    ],
+    "confidence": "A/B",
+    "caveat": "Organization-wide policies can intentionally standardize.",
+    "koda_implication": "Model quality capabilities, then resolve through project evidence.",
+    "status": "supported"
+  },
+  {
+    "id": "C040",
+    "claim": "Strict typing can improve guarantees, but globally tightening type policy can be a migration and should not be forced casually.",
+    "sources": [
+      "S052"
+    ],
+    "confidence": "A/C",
+    "caveat": "TypeScript-specific authoritative evidence; analogous behavior varies by language.",
+    "koda_implication": "Prefer useful specific types in touched code while preserving existing project policy.",
+    "status": "supported"
+  },
+  {
+    "id": "C041",
+    "claim": "Quality gates are project policies; Sonar's changed/new-code philosophy is useful, but its numeric defaults are not universal.",
+    "sources": [
+      "S033",
+      "S034"
+    ],
+    "confidence": "B",
+    "caveat": "If an organization mandates Sonar thresholds, preserve them.",
+    "koda_implication": "Make Sonar optional/capability-driven.",
+    "status": "supported"
+  },
+  {
+    "id": "C042",
+    "claim": "A strong local deterministic quality contract can exist without hosted CI.",
+    "sources": [
+      "S021",
+      "S022",
+      "S026",
+      "S027"
+    ],
+    "confidence": "C",
+    "caveat": "Synthesis rather than direct quote.",
+    "koda_implication": "Do not make GitHub/cloud access a precondition for good engineering.",
+    "status": "supported inference"
+  },
+  {
+    "id": "C043",
+    "claim": "Greenfield and existing-project work need different decision behavior.",
+    "sources": [
+      "S002",
+      "S038",
+      "S047",
+      "S050"
+    ],
+    "confidence": "C",
+    "caveat": "Synthesis from architecture and ecosystem evidence.",
+    "koda_implication": "Greenfield chooses; adoption preserves/understands first.",
+    "status": "supported inference"
+  },
+  {
+    "id": "C044",
+    "claim": "A file/tool marker proves that a capability exists, not that every new component should use it.",
+    "sources": [
+      "S047",
+      "S050",
+      "S058"
+    ],
+    "confidence": "C",
+    "caveat": "Inference.",
+    "koda_implication": "Detection and recommendation must remain separate.",
+    "status": "supported inference"
+  },
+  {
+    "id": "C045",
+    "claim": "Koda should prefer project-native commands/scripts over guessed raw commands because configuration/plugins can materially change lifecycle behavior.",
+    "sources": [
+      "S047",
+      "S049",
+      "S050",
+      "S053",
+      "S055",
+      "S056",
+      "S057"
+    ],
+    "confidence": "B",
+    "caveat": "Fallback discovery is still needed when scripts are absent.",
+    "koda_implication": "Treat existing scripts/wrappers as highest-quality execution evidence.",
+    "status": "supported"
+  },
+  {
+    "id": "C046",
+    "claim": "Public compatibility surfaces require explicit change-impact reasoning; improving style or guideline compliance is not sufficient reason to break existing consumers.",
+    "sources": [
+      "S064",
+      "S065",
+      "S066"
+    ],
+    "confidence": "A/B",
+    "caveat": "What counts as a public/stable contract is project-specific.",
+    "koda_implication": "Detect API/library/CLI/config/data-format contracts and flag likely breaking changes; preserve existing contract policy.",
+    "status": "supported"
+  },
+  {
+    "id": "C047",
+    "claim": "Semantic Versioning is useful only when the project defines a public API and chooses SemVer; Koda must not impose SemVer universally.",
+    "sources": [
+      "S063"
+    ],
+    "confidence": "A",
+    "caveat": "Projects may use calendar versioning, date versions, internal build numbers, or no formal public versioning.",
+    "koda_implication": "Respect existing version scheme; use SemVer semantics only when declared or newly selected for a compatible project.",
+    "status": "supported"
+  },
+  {
+    "id": "C048",
+    "claim": "Behavior, error contracts, required parameters, authorization requirements, and performance/rate-limit expectations can be compatibility surfaces\u2014not only function names or endpoint URLs.",
+    "sources": [
+      "S064",
+      "S065"
+    ],
+    "confidence": "A/B",
+    "caveat": "Exact compatibility definition should be project-owned.",
+    "koda_implication": "Reviewer should consider behavioral/API contract regressions, not just compilation.",
+    "status": "supported"
+  },
+  {
+    "id": "C049",
+    "claim": "Deprecation/support windows are product policy and should not be invented by Koda.",
+    "sources": [
+      "S065",
+      "S066"
+    ],
+    "confidence": "A/C",
+    "caveat": "Different projects use radically different stability tracks and support periods.",
+    "koda_implication": "Require/document migration path when project policy says so; never copy GitHub/Kubernetes support durations as defaults.",
+    "status": "supported"
+  },
+  {
+    "id": "C050",
+    "claim": "Reproducible dependency resolution, SBOM inventory, and build provenance/attestation are distinct supply-chain capabilities.",
+    "sources": [
+      "S067",
+      "S068",
+      "S069"
+    ],
+    "confidence": "A",
+    "caveat": "Each has different cost and applicability.",
+    "koda_implication": "Model them separately; do not treat a lockfile as an SBOM or an SBOM as provenance.",
+    "status": "supported"
+  },
+  {
+    "id": "C051",
+    "claim": "Formal SBOM/provenance capabilities are most justified for distributable artifacts, organizational/security requirements, or higher-risk supply chains; they need not be a universal local-project gate.",
+    "sources": [
+      "S067",
+      "S068",
+      "S093"
+    ],
+    "confidence": "B/C",
+    "caveat": "Some organizations/regulations may require them regardless of size.",
+    "koda_implication": "Make SBOM/provenance conditional capabilities driven by release/distribution/risk/policy.",
+    "status": "supported inference"
+  },
+  {
+    "id": "C052",
+    "claim": "CI/CD workflows are privileged code and should follow least privilege, secret hygiene, untrusted-input handling, and pipeline-integrity controls.",
+    "sources": [
+      "S070",
+      "S072",
+      "S073",
+      "S074",
+      "S096"
+    ],
+    "confidence": "A/B",
+    "caveat": "Mechanics differ by CI provider.",
+    "koda_implication": "Generated/modified CI is a security-sensitive change surface and should receive dedicated validation.",
+    "status": "supported"
+  },
+  {
+    "id": "C053",
+    "claim": "When GitHub Actions must authenticate to a compatible cloud/service, short-lived OIDC credentials can reduce reliance on stored long-lived credentials.",
+    "sources": [
+      "S071"
+    ],
+    "confidence": "A",
+    "caveat": "Requires compatible provider, configuration and authorization; local/offline projects may not use it.",
+    "koda_implication": "Prefer OIDC when the existing deployment platform supports it, but never make it a universal deployment requirement.",
+    "status": "supported"
+  },
+  {
+    "id": "C054",
+    "claim": "Dependency pinning improves reproducibility/integrity but must be paired with an update process; pinning without maintenance can preserve vulnerable or obsolete versions.",
+    "sources": [
+      "S070",
+      "S092"
+    ],
+    "confidence": "B",
+    "caveat": "Exact pin semantics vary by ecosystem and artifact type.",
+    "koda_implication": "If Koda strengthens pinning, it should preserve/create a reasonable update path where applicable rather than freeze dependencies indefinitely.",
+    "status": "supported"
+  },
+  {
+    "id": "C055",
+    "claim": "Applications/end products and reusable libraries can legitimately have different dependency-locking semantics.",
+    "sources": [
+      "S089",
+      "S090",
+      "S091"
+    ],
+    "confidence": "A/C",
+    "caveat": "Evidence is ecosystem-specific; do not generalize exact Cargo behavior to Python/npm/etc.",
+    "koda_implication": "Determine package role and ecosystem before changing dependency ranges or lockfiles.",
+    "status": "supported"
+  },
+  {
+    "id": "C056",
+    "claim": "Secure defaults should reduce the need for nontechnical users to discover and enable basic security controls themselves.",
+    "sources": [
+      "S075",
+      "S077",
+      "S093"
+    ],
+    "confidence": "A/B",
+    "caveat": "What the secure default is depends on product functionality and threat model.",
+    "koda_implication": "For beginner-facing software, prefer safe default paths and explain deliberate relaxations instead of shipping insecure defaults plus hardening instructions.",
+    "status": "supported"
+  },
+  {
+    "id": "C057",
+    "claim": "For greenfield, security-sensitive or exposed low-level code where language choice is genuinely open, memory-safe languages should receive positive weight; existing memory-unsafe code should not be rewritten automatically without a justified migration.",
+    "sources": [
+      "S076"
+    ],
+    "confidence": "A/C",
+    "caveat": "Feasibility, ecosystem, performance, platform and organizational constraints still matter.",
+    "koda_implication": "Add memory-safety as a quality attribute for relevant greenfield/system components, not as a blanket language preference.",
+    "status": "supported"
+  },
+  {
+    "id": "C058",
+    "claim": "Deploy-varying configuration and credentials should be separated from source code, but environment variables are one mechanism rather than a universal answer.",
+    "sources": [
+      "S078",
+      "S081"
+    ],
+    "confidence": "B",
+    "caveat": "Desktop/local/mobile/embedded systems may use secure config files, OS stores or other mechanisms.",
+    "koda_implication": "Externalize secrets/deploy config using the platform's existing appropriate mechanism; do not force env vars everywhere.",
+    "status": "supported"
+  },
+  {
+    "id": "C059",
+    "claim": "Potentially untrusted input should be validated at a trusted boundary for both syntax and business semantics, using framework/schema mechanisms where available rather than ad-hoc filters.",
+    "sources": [
+      "S079"
+    ],
+    "confidence": "B",
+    "caveat": "Validation strategy depends on input type; free-form text cannot always be narrow-allowlisted.",
+    "koda_implication": "Security resolver should identify untrusted input boundaries and prefer framework/schema validation.",
+    "status": "supported"
+  },
+  {
+    "id": "C060",
+    "claim": "Errors and logs should support debugging/operations without exposing secrets, sensitive data, internal stack details to untrusted clients, or creating unbounded logging risk.",
+    "sources": [
+      "S080"
+    ],
+    "confidence": "B",
+    "caveat": "Logging/audit requirements vary by system and regulation.",
+    "koda_implication": "Review error/log behavior proportionally; translate user-facing errors while preserving protected technical diagnostics.",
+    "status": "supported"
+  },
+  {
+    "id": "C061",
+    "claim": "When using a capable relational database, durable invariants such as uniqueness, nullability and referential relationships are often stronger when enforced with database constraints rather than application checks alone.",
+    "sources": [
+      "S083"
+    ],
+    "confidence": "A/C",
+    "caveat": "Not every business rule belongs in a database constraint and not every datastore supports the same features.",
+    "koda_implication": "Consider datastore constraints for persistent invariants; avoid duplicating or contradicting existing schema rules.",
+    "status": "supported"
+  },
+  {
+    "id": "C062",
+    "claim": "Related persistent mutations that must succeed or fail together should use an appropriate transaction boundary; transactions should not be made larger than integrity requires.",
+    "sources": [
+      "S082"
+    ],
+    "confidence": "A/C",
+    "caveat": "Transactional capabilities differ by datastore and distributed boundary.",
+    "koda_implication": "Identify atomicity requirements instead of scattering multi-step writes or wrapping unrelated work in giant transactions.",
+    "status": "supported"
+  },
+  {
+    "id": "C063",
+    "claim": "Asynchronous messaging, duplicate delivery and retries introduce idempotency/order/consistency requirements that must be designed explicitly.",
+    "sources": [
+      "S084",
+      "S088",
+      "S094",
+      "S095"
+    ],
+    "confidence": "B",
+    "caveat": "Only relevant once asynchronous/distributed patterns actually exist.",
+    "koda_implication": "Do not add queues/events casually; when they are justified, add corresponding correctness semantics.",
+    "status": "supported"
+  },
+  {
+    "id": "C064",
+    "claim": "Microservices can provide independent scaling/deployment/isolation benefits but add distributed-system, testing, consistency, observability, governance and operational complexity.",
+    "sources": [
+      "S085",
+      "S086"
+    ],
+    "confidence": "B",
+    "caveat": "Team/organization architecture is an explicit requirement in many real systems.",
+    "koda_implication": "Microservices require concrete benefits/readiness evidence; a modular monolith or existing monolith may be the better proportional choice.",
+    "status": "supported"
+  },
+  {
+    "id": "C065",
+    "claim": "Caching is not a free optimization: it introduces staleness, invalidation, expiration, memory/capacity and multi-instance consistency concerns.",
+    "sources": [
+      "S087"
+    ],
+    "confidence": "B",
+    "caveat": "Some frameworks/services provide transparent caching semantics.",
+    "koda_implication": "Introduce cache only for concrete access-pattern/performance needs and define freshness/invalidation behavior.",
+    "status": "supported"
+  },
+  {
+    "id": "C066",
+    "claim": "When rolling deployments or zero-downtime requirements cause old and new application versions to overlap, schema evolution should favor backward-compatible staged changes rather than one-step destructive changes.",
+    "sources": [
+      "S097"
+    ],
+    "confidence": "B",
+    "caveat": "Not necessary for offline/single-instance systems that can tolerate coordinated downtime.",
+    "koda_implication": "Quality profile should select staged expand/migrate/contract behavior only when deployment topology requires it.",
+    "status": "supported"
+  },
+  {
+    "id": "C067",
+    "claim": "Generated CI must treat PR/issue/branch metadata and other contributor-controlled values as untrusted data; direct interpolation into executable scripts can create injection vulnerabilities.",
+    "sources": [
+      "S073",
+      "S096"
+    ],
+    "confidence": "A",
+    "caveat": "GitHub Actions-specific syntax; general principle is broader.",
+    "koda_implication": "Add CI-workflow static validation for untrusted expression-to-shell/script flows when GitHub Actions is generated/modified.",
+    "status": "supported"
+  },
+  {
+    "id": "C068",
+    "claim": "Secure framework/language building blocks that eliminate vulnerability classes are preferable to repeated custom defensive code when they fit the project.",
+    "sources": [
+      "S075",
+      "S093"
+    ],
+    "confidence": "B",
+    "caveat": "Existing frameworks and project constraints still govern the concrete choice.",
+    "koda_implication": "Prefer parameterized queries, framework escaping/validation/auth mechanisms, and safe libraries over bespoke security machinery.",
+    "status": "supported"
+  },
+  {
+    "id": "C069",
+    "claim": "A vulnerability in a dependency inventory does not automatically mean the specific product is exploitable, but non-applicability requires evidence rather than agent assertion.",
+    "sources": [
+      "S098",
+      "S099"
+    ],
+    "confidence": "B",
+    "caveat": "Scanner false positives/context gaps exist; known affected/exploitable findings still require timely action according to policy/risk.",
+    "koda_implication": "Support vulnerability triage states and evidence; never let a model silently dismiss a finding as 'not applicable'.",
+    "status": "supported"
+  },
+  {
+    "id": "C070",
+    "claim": "Vulnerability severity thresholds and dependency license allow/deny policy are project/organization policy, not universal Koda constants.",
+    "sources": [
+      "S100"
+    ],
+    "confidence": "A/C",
+    "caveat": "Some regulations or organizational security baselines may define mandatory thresholds.",
+    "koda_implication": "Preserve existing configured thresholds; if none exist, report risk and recommend rather than invent a universal fail level.",
+    "status": "supported"
+  },
+  {
+    "id": "C071",
+    "claim": "Security tool absence or unsupported ecosystem coverage must not be interpreted as a passing security result.",
+    "sources": [
+      "S032",
+      "S100"
+    ],
+    "confidence": "A/C",
+    "caveat": "Other local/project tools may provide equivalent coverage.",
+    "koda_implication": "Quality capability state should distinguish `unavailable` from `pass` and seek existing alternatives where appropriate.",
+    "status": "supported inference"
+  },
+  {
+    "id": "C072",
+    "claim": "License metadata can be surfaced and enforced when a project supplies a policy, but Koda should not make independent legal-license acceptability decisions.",
+    "sources": [
+      "S100"
+    ],
+    "confidence": "A/C",
+    "caveat": "License compatibility is legal/organizational context.",
+    "koda_implication": "Report licenses and respect explicit allow/deny policy; otherwise avoid hard legal conclusions.",
+    "status": "supported"
+  }
+]

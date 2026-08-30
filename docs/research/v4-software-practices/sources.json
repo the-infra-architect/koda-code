@@ -1,0 +1,902 @@
+[
+  {
+    "id": "S001",
+    "title": "ISO/IEC 25010:2023 \u2014 Systems and software Quality Requirements and Evaluation (SQuaRE): Product quality model",
+    "url": "https://www.iso.org/standard/78176.html",
+    "authority": "International standard",
+    "scope": "Software product quality model",
+    "use": "Treat software quality as multidimensional rather than a single simplicity/quality score.",
+    "caveat": "Public abstract supports model-level claims; full normative text is not reproduced here."
+  },
+  {
+    "id": "S002",
+    "title": "SEI \u2014 Reasoning About Software Quality Attributes",
+    "url": "https://www.sei.cmu.edu/library/reasoning-about-software-quality-attributes/",
+    "authority": "SEI / architecture research",
+    "scope": "Architecture and quality attributes",
+    "use": "Architecture decisions should be reasoned about through concrete quality-attribute scenarios.",
+    "caveat": "Foundational architecture guidance; implementation mechanisms still depend on project context."
+  },
+  {
+    "id": "S003",
+    "title": "SEI \u2014 Architecture Tradeoff Analysis Method",
+    "url": "https://www.sei.cmu.edu/library/the-architecture-tradeoff-analysis-method/",
+    "authority": "SEI / architecture research",
+    "scope": "Architecture tradeoffs",
+    "use": "Quality attributes can conflict; architecture involves explicit tradeoffs.",
+    "caveat": "Koda should borrow the reasoning principle, not reproduce enterprise ATAM ceremony."
+  },
+  {
+    "id": "S004",
+    "title": "SEI \u2014 Maintainability",
+    "url": "https://www.sei.cmu.edu/library/maintainability/",
+    "authority": "SEI / architecture research",
+    "scope": "Maintainability as a quality attribute",
+    "use": "Maintainability should be considered as a requirement/architectural concern.",
+    "caveat": "Architecture-level guidance."
+  },
+  {
+    "id": "S005",
+    "title": "SEI \u2014 Modifiability Tactics",
+    "url": "https://www.sei.cmu.edu/library/modifiability-tactics/",
+    "authority": "SEI / architecture research",
+    "scope": "Coupling, cohesion, modifiability tactics",
+    "use": "Supports reasoning about change cost and structural boundaries.",
+    "caveat": "Do not automatically apply every tactic or turn them into mandatory patterns."
+  },
+  {
+    "id": "S006",
+    "title": "Google Engineering Practices \u2014 What to look for in a code review",
+    "url": "https://google.github.io/eng-practices/review/reviewer/looking-for.html",
+    "authority": "Major practitioner engineering guide",
+    "scope": "Code review",
+    "use": "Review design, functionality, complexity, tests, naming, comments/documentation, and maintainability.",
+    "caveat": "Google-specific process details are not universal."
+  },
+  {
+    "id": "S007",
+    "title": "Google Engineering Practices \u2014 The standard of code review",
+    "url": "https://google.github.io/eng-practices/review/reviewer/standard.html",
+    "authority": "Major practitioner engineering guide",
+    "scope": "Code review acceptance",
+    "use": "Improve code health rather than block all progress until theoretical perfection.",
+    "caveat": "Risk-critical systems may have higher required acceptance standards."
+  },
+  {
+    "id": "S008",
+    "title": "Google Engineering Practices \u2014 Small CLs",
+    "url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
+    "authority": "Major practitioner engineering guide",
+    "scope": "Change size/reviewability",
+    "use": "Small, focused, self-contained changes improve reviewability and integration.",
+    "caveat": "There is no universal line-count threshold; some coherent changes are necessarily large."
+  },
+  {
+    "id": "S009",
+    "title": "Google Go Style Guide \u2014 Style principles",
+    "url": "https://google.github.io/styleguide/go/guide.html",
+    "authority": "Major practitioner/ecosystem guide",
+    "scope": "Clarity, simplicity, maintainability, consistency",
+    "use": "Code should be optimized for readers; abstractions should map to the problem and justify their cost.",
+    "caveat": "Examples are Go-specific; project conventions win."
+  },
+  {
+    "id": "S010",
+    "title": "Google TypeScript Style Guide",
+    "url": "https://google.github.io/styleguide/tsguide.html",
+    "authority": "Major practitioner/ecosystem guide",
+    "scope": "Naming and TypeScript style",
+    "use": "Descriptive names and meaningful interface naming.",
+    "caveat": "Google-specific conventions are not universal."
+  },
+  {
+    "id": "S011",
+    "title": "Google Documentation Best Practices",
+    "url": "https://google.github.io/styleguide/docguide/best_practices.html",
+    "authority": "Major practitioner guide",
+    "scope": "Documentation",
+    "use": "Prefer minimum viable, accurate documentation and update it with code.",
+    "caveat": "Regulated/public API contexts may require more extensive documentation."
+  },
+  {
+    "id": "S012",
+    "title": "DORA \u2014 Test automation",
+    "url": "https://dora.dev/capabilities/test-automation/",
+    "authority": "Research-backed practitioner guidance",
+    "scope": "Testing and delivery feedback",
+    "use": "Fast, reliable automated feedback is valuable; manual exploratory/usability testing still has a role.",
+    "caveat": "Not every recommendation on the page should become a universal Koda mandate."
+  },
+  {
+    "id": "S013",
+    "title": "Google Testing Blog \u2014 How Much Testing is Enough?",
+    "url": "https://testing.googleblog.com/2021/06/how-much-testing-is-enough.html",
+    "authority": "Major practitioner testing guidance",
+    "scope": "Risk/context-sensitive test strategy",
+    "use": "Testing depth depends on software purpose/audience; integration and critical-user-flow testing matter.",
+    "caveat": "Heuristics are practitioner guidance rather than formal standard."
+  },
+  {
+    "id": "S014",
+    "title": "Google Testing Blog \u2014 Code Coverage Best Practices",
+    "url": "https://testing.googleblog.com/2020/08/code-coverage-best-practices.html",
+    "authority": "Major practitioner testing guidance",
+    "scope": "Coverage",
+    "use": "Coverage is a gap/risk signal rather than a universal quality score.",
+    "caveat": "Do not promote Google-specific numeric heuristics into universal gates."
+  },
+  {
+    "id": "S015",
+    "title": "Microsoft .NET \u2014 Unit testing best practices",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
+    "authority": "Ecosystem/vendor guidance",
+    "scope": "Unit testing",
+    "use": "Good unit tests are fast/repeatable/isolated; high coverage alone does not establish quality.",
+    "caveat": ".NET examples; general principles are broader."
+  },
+  {
+    "id": "S016",
+    "title": "Google Research / ICSE \u2014 Long Term Effects of Mutation Testing",
+    "url": "https://research.google/pubs/long-term-effects-of-mutation-testing/",
+    "authority": "Peer-reviewed empirical research",
+    "scope": "Mutation testing",
+    "use": "Mutation testing can reveal meaningful test gaps and correlate with real faults.",
+    "caveat": "Cost/process overhead makes it selective rather than universal."
+  },
+  {
+    "id": "S017",
+    "title": "NIST SP 800-218 \u2014 Secure Software Development Framework (SSDF) 1.1",
+    "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+    "authority": "US government standard/guidance",
+    "scope": "Secure SDLC",
+    "use": "Security practices should be integrated into software development rather than bolted on later.",
+    "caveat": "High-level framework; implementation is context-dependent."
+  },
+  {
+    "id": "S018",
+    "title": "NIST IR 8397 \u2014 Guidelines on Minimum Standards for Developer Verification of Software",
+    "url": "https://csrc.nist.gov/pubs/ir/8397/final",
+    "authority": "US government guidance",
+    "scope": "Software verification/security testing",
+    "use": "Threat modeling, automated tests, static scanning, secret detection, built-in protections, black-box/structural/historical tests, fuzzing, web scanning when applicable, and dependency review.",
+    "caveat": "The document itself says it does not cover the totality of verification; techniques still require applicability judgment."
+  },
+  {
+    "id": "S019",
+    "title": "OWASP Application Security Verification Standard (ASVS) 5.0.0",
+    "url": "https://owasp.org/www-project-application-security-verification-standard/",
+    "authority": "Industry security standard",
+    "scope": "Web application/service security",
+    "use": "Provides testable web security requirements.",
+    "caveat": "Web-focused; do not apply wholesale to local scripts/desktop-only software."
+  },
+  {
+    "id": "S020",
+    "title": "OWASP Threat Modeling Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+    "authority": "Industry security guidance",
+    "scope": "Threat modeling",
+    "use": "Structured process: model system, identify what can go wrong, choose mitigations, validate.",
+    "caveat": "Depth should be proportional to exposure and risk."
+  },
+  {
+    "id": "S021",
+    "title": "OWASP Secrets Management Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+    "authority": "Industry security guidance",
+    "scope": "Secrets",
+    "use": "Keep secrets out of source/logs and manage lifecycle/privilege appropriately.",
+    "caveat": "Exact mechanism depends on environment/infrastructure."
+  },
+  {
+    "id": "S022",
+    "title": "OWASP Software Component Verification Standard (SCVS)",
+    "url": "https://scvs.owasp.org/",
+    "authority": "Industry supply-chain standard",
+    "scope": "Software supply-chain assurance",
+    "use": "Component inventory, package management, analysis, provenance, and risk-based maturity.",
+    "caveat": "Risk-acceptance criteria are organizational/business decisions; Koda must not invent legal/risk policy."
+  },
+  {
+    "id": "S023",
+    "title": "NIST NCCoE DevSecOps \u2014 Role of AI in software development",
+    "url": "https://pages.nist.gov/nccoe-devsecops/introduction.html",
+    "authority": "US government guidance/project",
+    "scope": "AI-generated software in DevSecOps",
+    "use": "AI-generated content should be monitored/validated and supported by verifiable processes.",
+    "caveat": "Project guidance evolves; use SSDF as the stable baseline."
+  },
+  {
+    "id": "S024",
+    "title": "Fu et al. \u2014 Security Weaknesses of Copilot-Generated Code in GitHub Projects",
+    "url": "https://arxiv.org/abs/2310.02059",
+    "authority": "Empirical preprint/research",
+    "scope": "Security of AI-generated code",
+    "use": "Supports independent verification of AI-generated code.",
+    "caveat": "Model/tool/time/dataset-specific percentages must not be generalized."
+  },
+  {
+    "id": "S025",
+    "title": "DORA \u2014 Trunk-based development",
+    "url": "https://dora.dev/capabilities/trunk-based-development/",
+    "authority": "Research-backed practitioner guidance",
+    "scope": "Branch/integration practice",
+    "use": "Short-lived branches and frequent integration reduce integration burden.",
+    "caveat": "Koda can still use feature worktrees; isolation does not require long-lived branches."
+  },
+  {
+    "id": "S026",
+    "title": "DORA \u2014 Continuous delivery",
+    "url": "https://dora.dev/capabilities/continuous-delivery/",
+    "authority": "Research-backed practitioner guidance",
+    "scope": "Delivery",
+    "use": "Keep software releasable; continuous delivery is distinct from automatic deployment.",
+    "caveat": "Local/offline software may have no hosted deployment pipeline."
+  },
+  {
+    "id": "S027",
+    "title": "DORA \u2014 Version control",
+    "url": "https://dora.dev/capabilities/version-control/",
+    "authority": "Research-backed practitioner guidance",
+    "scope": "Versioned engineering artifacts",
+    "use": "Version application, tests, build/deploy/config/migrations and relevant AI prompts/agent config.",
+    "caveat": "Large binary artifacts may belong in artifact/blob storage rather than Git."
+  },
+  {
+    "id": "S028",
+    "title": "DORA \u2014 Code maintainability",
+    "url": "https://dora.dev/capabilities/code-maintainability/",
+    "authority": "Research-backed practitioner guidance",
+    "scope": "Dependency/build traceability",
+    "use": "Traceable dependencies and reproducible builds/installations support maintainability.",
+    "caveat": "Does not prescribe one package manager or lock strategy."
+  },
+  {
+    "id": "S029",
+    "title": "Git \u2014 git-worktree documentation",
+    "url": "https://git-scm.com/docs/git-worktree",
+    "authority": "Primary tool documentation",
+    "scope": "Git worktrees",
+    "use": "Authoritative behavior for linked worktrees and lifecycle.",
+    "caveat": "Worktrees are a Koda isolation mechanism, not a universal team branching policy."
+  },
+  {
+    "id": "S030",
+    "title": "GitHub Actions \u2014 Secure use reference",
+    "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+    "authority": "Primary platform documentation",
+    "scope": "GitHub Actions security",
+    "use": "Full commit SHA is GitHub's immutable reference for third-party actions; secure workflow configuration.",
+    "caveat": "GitHub-specific; update automation/policy may be needed."
+  },
+  {
+    "id": "S031",
+    "title": "GitHub \u2014 Dependency review",
+    "url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-review",
+    "authority": "Primary platform documentation",
+    "scope": "Dependency changes",
+    "use": "Can surface dependency vulnerabilities/licenses when platform capability is available.",
+    "caveat": "Availability depends on repository type/plan/settings."
+  },
+  {
+    "id": "S032",
+    "title": "GitHub \u2014 CodeQL code scanning",
+    "url": "https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-code-scanning",
+    "authority": "Primary platform documentation",
+    "scope": "Static security analysis",
+    "use": "CodeQL supports a defined language set and can identify vulnerabilities/errors.",
+    "caveat": "Unsupported languages/frameworks require different tooling; platform/plan constraints apply."
+  },
+  {
+    "id": "S033",
+    "title": "SonarQube \u2014 About new code",
+    "url": "https://docs.sonarsource.com/sonarqube-cloud/standards/about-new-code",
+    "authority": "Primary vendor documentation",
+    "scope": "Changed/new-code quality",
+    "use": "Supports focusing quality improvement on changed/new code.",
+    "caveat": "Sonar-specific methodology."
+  },
+  {
+    "id": "S034",
+    "title": "SonarQube \u2014 Quality gates",
+    "url": "https://docs.sonarsource.com/sonarqube-server/2026.1/quality-standards-administration/managing-quality-gates/introduction-to-quality-gates",
+    "authority": "Primary vendor documentation",
+    "scope": "Quality gates",
+    "use": "Quality gates are customizable and may differ across projects.",
+    "caveat": "Built-in numeric defaults are vendor defaults, not universal engineering laws."
+  },
+  {
+    "id": "S035",
+    "title": "Microsoft Engineering Playbook \u2014 Observability recommended practices",
+    "url": "https://microsoft.github.io/code-with-engineering-playbook/observability/best-practices/",
+    "authority": "Major practitioner guidance",
+    "scope": "Observability",
+    "use": "Collect actionable failure/dependency/latency signals, start small, avoid sensitive logging.",
+    "caveat": "Service-oriented; not every script/local app needs logs+metrics+traces."
+  },
+  {
+    "id": "S036",
+    "title": "Azure Well-Architected \u2014 Performance Efficiency principles",
+    "url": "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/principles",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Performance engineering",
+    "use": "Use realistic performance targets, measurement, iterative optimization, and efficient resource use.",
+    "caveat": "Cloud-oriented source; general measurement principle is broader."
+  },
+  {
+    "id": "S037",
+    "title": "Azure Architecture Center \u2014 Transient fault handling",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/transient-faults",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Retries/reliability",
+    "use": "Retry only likely transient faults; use bounded attempts, timeouts, backoff/jitter, and idempotency awareness.",
+    "caveat": "Remote/distributed dependency context; not a reason to add retry frameworks to local computation."
+  },
+  {
+    "id": "S038",
+    "title": "DuckDB \u2014 Why DuckDB",
+    "url": "https://www.duckdb.org/why_duckdb",
+    "authority": "Primary project documentation",
+    "scope": "DuckDB workload/architecture",
+    "use": "DuckDB targets analytical/OLAP workloads and embedded simplicity; explicitly says no DB is one-size-fits-all.",
+    "caveat": "Project source is authoritative about DuckDB, not other databases."
+  },
+  {
+    "id": "S039",
+    "title": "DuckDB \u2014 Concurrency",
+    "url": "https://duckdb.org/docs/current/connect/concurrency",
+    "authority": "Primary project documentation",
+    "scope": "DuckDB concurrent access",
+    "use": "Documents process/write concurrency, optimistic conflicts, and current DuckLake/Quack options.",
+    "caveat": "DuckDB is evolving rapidly; version/capability must be checked."
+  },
+  {
+    "id": "S040",
+    "title": "DuckDB \u2014 Environment / network-attached disks",
+    "url": "https://duckdb.org/docs/current/guides/performance/environment",
+    "authority": "Primary project documentation",
+    "scope": "DuckDB storage environment",
+    "use": "Warns against native read-write DuckDB on NAS/NFS/SMB/Samba; read-only network storage differs.",
+    "caveat": "Cloud block disks and lakehouse formats have different semantics."
+  },
+  {
+    "id": "S041",
+    "title": "DuckDB \u2014 Tuning Workloads",
+    "url": "https://duckdb.org/docs/current/guides/performance/how_to_tune_workloads",
+    "authority": "Primary project documentation",
+    "scope": "DuckDB performance/resource behavior",
+    "use": "Analytical workload focus, profiling, memory caveats, remote I/O, connection reuse.",
+    "caveat": "DuckDB-specific optimizations should not become universal DB rules."
+  },
+  {
+    "id": "S042",
+    "title": "SQLite \u2014 Appropriate Uses For SQLite",
+    "url": "https://www.sqlite.org/whentouse.html",
+    "authority": "Primary project documentation",
+    "scope": "Embedded vs client/server database selection",
+    "use": "Client/server is preferable for many concurrent writers/direct network clients; embedded DB is strong for local low-write-concurrency use.",
+    "caveat": "This research does not make SQLite Koda's default; it provides useful workload decision axes."
+  },
+  {
+    "id": "S043",
+    "title": "SQLite \u2014 SQLite Over a Network, Caveats and Considerations",
+    "url": "https://www.sqlite.org/useovernet.html",
+    "authority": "Primary project documentation",
+    "scope": "Network filesystem database risk",
+    "use": "Network filesystem locking/sync can be unreliable and may corrupt databases.",
+    "caveat": "Filesystem implementation matters; client/server architecture avoids direct DB file sharing."
+  },
+  {
+    "id": "S044",
+    "title": "PostgreSQL 18 \u2014 Concurrency Control",
+    "url": "https://www.postgresql.org/docs/18/mvcc.html",
+    "authority": "Primary project documentation",
+    "scope": "Multi-session transactional concurrency",
+    "use": "PostgreSQL provides MVCC/locking/isolation for multiple concurrent sessions.",
+    "caveat": "PostgreSQL is an example of client/server transactional architecture, not a universal database default."
+  },
+  {
+    "id": "S045",
+    "title": "PostgreSQL 18 \u2014 Backup and Restore",
+    "url": "https://www.postgresql.org/docs/current/backup.html",
+    "authority": "Primary project documentation",
+    "scope": "Persistent-data recovery",
+    "use": "Different backup approaches carry tradeoffs; durable valuable data needs recovery planning.",
+    "caveat": "Mechanisms are PostgreSQL-specific."
+  },
+  {
+    "id": "S046",
+    "title": "PostgreSQL 18 \u2014 ALTER TABLE",
+    "url": "https://www.postgresql.org/docs/current/sql-altertable.html",
+    "authority": "Primary project documentation",
+    "scope": "Schema migration locking",
+    "use": "Schema changes may acquire strong locks; migration risk depends on operation/workload.",
+    "caveat": "Exact behavior is PostgreSQL-specific."
+  },
+  {
+    "id": "S047",
+    "title": "Python Packaging \u2014 pyproject.toml specification",
+    "url": "https://packaging.python.org/en/latest/specifications/pyproject-toml/",
+    "authority": "Primary ecosystem specification",
+    "scope": "Python project/build/tool metadata",
+    "use": "Canonical signal for Python build/project/tool configuration.",
+    "caveat": "Legacy and tool-specific project layouts still exist."
+  },
+  {
+    "id": "S048",
+    "title": "Python Packaging \u2014 pylock.toml specification",
+    "url": "https://packaging.python.org/en/latest/specifications/pylock-toml/",
+    "authority": "Primary ecosystem specification",
+    "scope": "Python reproducible environments",
+    "use": "Standards-based lock-file semantics.",
+    "caveat": "Python currently has multiple lock mechanisms; Koda must preserve existing tool choice."
+  },
+  {
+    "id": "S049",
+    "title": "npm \u2014 package-lock.json",
+    "url": "https://docs.npmjs.com/files/package-lock.json/",
+    "authority": "Primary ecosystem documentation",
+    "scope": "JavaScript dependency locking",
+    "use": "Exact dependency tree/reproducible npm installs and source-controlled lock state.",
+    "caveat": "pnpm/yarn/bun use different lock formats."
+  },
+  {
+    "id": "S050",
+    "title": "Maven \u2014 Build Lifecycle",
+    "url": "https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Maven build/test lifecycle",
+    "use": "Use configured native lifecycle before inventing bespoke commands.",
+    "caveat": "Project plugins may extend/change behavior."
+  },
+  {
+    "id": "S051",
+    "title": "Maven \u2014 Reproducible Builds",
+    "url": "https://maven.apache.org/guides/mini/guide-reproducible-builds.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Build reproducibility",
+    "use": "Reproducible artifacts are a deliberate build property and can be verified.",
+    "caveat": "Bit-for-bit reproducibility may need plugin/environment work."
+  },
+  {
+    "id": "S052",
+    "title": "TypeScript \u2014 strict TSConfig option",
+    "url": "https://www.typescriptlang.org/tsconfig/strict",
+    "authority": "Primary ecosystem documentation",
+    "scope": "TypeScript type strictness",
+    "use": "Strict mode gives stronger type-checking guarantees.",
+    "caveat": "Enabling it in an existing project can be a migration; preserve project policy."
+  },
+  {
+    "id": "S053",
+    "title": "Rust Cargo \u2014 cargo test",
+    "url": "https://doc.rust-lang.org/cargo/commands/cargo-test.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Rust testing lifecycle",
+    "use": "Use native project test lifecycle.",
+    "caveat": "Projects may define extra checks."
+  },
+  {
+    "id": "S054",
+    "title": "Rust Clippy \u2014 Usage",
+    "url": "https://doc.rust-lang.org/stable/clippy/usage.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Rust linting",
+    "use": "Clippy provides configurable lint levels; allowances can be deliberate.",
+    "caveat": "Do not turn all optional lints into hard failures."
+  },
+  {
+    "id": "S055",
+    "title": "Go \u2014 Modules Reference",
+    "url": "https://go.dev/ref/mod",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Go module/dependency configuration",
+    "use": "Detect module/workspace state and use native lifecycle.",
+    "caveat": "Multi-module workspaces require `go.work` awareness."
+  },
+  {
+    "id": "S056",
+    "title": ".NET CLI \u2014 dotnet test",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-test",
+    "authority": "Primary ecosystem documentation",
+    "scope": ".NET testing lifecycle",
+    "use": "Use native solution/project test lifecycle.",
+    "caveat": "Runner/config differ across SDK/project."
+  },
+  {
+    "id": "S057",
+    "title": "Gradle \u2014 Testing in Java/JVM projects",
+    "url": "https://docs.gradle.org/current/userguide/java_testing.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Gradle/JVM testing lifecycle",
+    "use": "Use existing test/check lifecycle and configured suites.",
+    "caveat": "Builds can define custom tasks/suites."
+  },
+  {
+    "id": "S058",
+    "title": "Nx \u2014 Affected tasks",
+    "url": "https://nx.dev/docs/features/ci-features/affected",
+    "authority": "Primary tool documentation",
+    "scope": "Monorepo/project graph",
+    "use": "Reuse existing affected/project-graph tooling to scope checks.",
+    "caveat": "Shared lock/config changes may broaden impact."
+  },
+  {
+    "id": "S059",
+    "title": "W3C \u2014 Web Content Accessibility Guidelines (WCAG) 2.2",
+    "url": "https://www.w3.org/TR/WCAG22/",
+    "authority": "Web standard",
+    "scope": "Web accessibility",
+    "use": "Testable accessibility criteria for web UI.",
+    "caveat": "Applicable primarily to web content; legal obligations vary."
+  },
+  {
+    "id": "S060",
+    "title": "W3C \u2014 Using ARIA",
+    "url": "https://www.w3.org/TR/using-aria/",
+    "authority": "Web standard/guidance",
+    "scope": "Accessible semantics/interactions",
+    "use": "Prefer native HTML semantics and preserve keyboard interaction.",
+    "caveat": "Custom widgets may legitimately require ARIA."
+  },
+  {
+    "id": "S061",
+    "title": "GOV.UK Service Manual \u2014 Start by learning user needs",
+    "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+    "authority": "Government service-design guidance",
+    "scope": "Outcome/user-language discovery",
+    "use": "Focus on the user's problem/outcome and use language they recognize.",
+    "caveat": "Government-service context; principles should later be tested with Koda users."
+  },
+  {
+    "id": "S062",
+    "title": "GOV.UK Service Manual \u2014 Designing good questions",
+    "url": "https://www.gov.uk/service-manual/design/designing-good-questions",
+    "authority": "Government service-design guidance",
+    "scope": "Question design",
+    "use": "Ask only needed information and use understandable language.",
+    "caveat": "Service-form context; use the principle, not form-specific UI."
+  },
+  {
+    "id": "S063",
+    "title": "Semantic Versioning 2.0.0",
+    "url": "https://semver.org/",
+    "authority": "Published versioning specification",
+    "scope": "Public API versioning",
+    "use": "If a project declares SemVer, incompatible public API changes map to major releases and compatible additions/fixes to minor/patch semantics.",
+    "caveat": "SemVer applies only when the project defines a public API and chooses SemVer; Koda must not force it on every project."
+  },
+  {
+    "id": "S064",
+    "title": "Microsoft REST API Guidelines",
+    "url": "https://github.com/microsoft/api-guidelines",
+    "authority": "Major practitioner API guidance",
+    "scope": "Existing/new REST APIs and compatibility",
+    "use": "Existing services should not receive breaking changes merely to comply with newer guidelines; breaking API changes require explicit versioning policy.",
+    "caveat": "Microsoft conventions are not a universal REST standard; the compatibility principle generalizes better than exact version mechanics."
+  },
+  {
+    "id": "S065",
+    "title": "GitHub REST API \u2014 Breaking changes",
+    "url": "https://docs.github.com/en/rest/about-the-rest-api/breaking-changes",
+    "authority": "Primary platform API documentation",
+    "scope": "API compatibility/versioning",
+    "use": "Concrete examples of breaking vs additive changes and explicit supported-version migration.",
+    "caveat": "GitHub-specific API contract; exact support windows are not universal."
+  },
+  {
+    "id": "S066",
+    "title": "Kubernetes Deprecation Policy",
+    "url": "https://kubernetes.io/docs/reference/using-api/deprecation-policy/",
+    "authority": "Primary project policy",
+    "scope": "API stability/deprecation",
+    "use": "Stable APIs require explicit compatibility/deprecation discipline and versioned removal.",
+    "caveat": "Kubernetes timelines/tracks are project-specific, not Koda defaults."
+  },
+  {
+    "id": "S067",
+    "title": "SLSA v1.2 \u2014 Build requirements",
+    "url": "https://slsa.dev/spec/v1.2/build-requirements",
+    "authority": "Industry supply-chain specification",
+    "scope": "Build provenance and isolation",
+    "use": "Build provenance identifies artifact outputs and how they were produced; stronger levels add integrity guarantees.",
+    "caveat": "Intended for produced/distributed artifacts and supply-chain assurance; not every local script needs SLSA provenance."
+  },
+  {
+    "id": "S068",
+    "title": "CycloneDX Specification Overview",
+    "url": "https://cyclonedx.org/specification/overview/",
+    "authority": "OWASP/Ecma standard",
+    "scope": "Software/system bill of materials",
+    "use": "Machine-readable representation of components, dependencies, services and related software supply-chain information.",
+    "caveat": "An SBOM describes inventory/transparency; it is not itself build provenance or proof that components are safe."
+  },
+  {
+    "id": "S069",
+    "title": "GitHub \u2014 Artifact attestations",
+    "url": "https://docs.github.com/en/actions/concepts/security/artifact-attestations",
+    "authority": "Primary platform documentation",
+    "scope": "Build artifact provenance/integrity",
+    "use": "Signed attestations can establish where/how GitHub-built artifacts were produced.",
+    "caveat": "Availability differs by GitHub plan/repository visibility; not a universal requirement."
+  },
+  {
+    "id": "S070",
+    "title": "OpenSSF Scorecard \u2014 Checks documentation",
+    "url": "https://github.com/ossf/scorecard/blob/main/docs/checks.md",
+    "authority": "OpenSSF security project",
+    "scope": "Repository/supply-chain security checks",
+    "use": "Pinning, token permissions, update tools and vulnerability checks have distinct tradeoffs; least-privilege CI tokens matter.",
+    "caveat": "Scorecard scoring is a tool heuristic, not a universal Koda quality score."
+  },
+  {
+    "id": "S071",
+    "title": "GitHub \u2014 OpenID Connect reference",
+    "url": "https://docs.github.com/en/actions/reference/security/oidc",
+    "authority": "Primary platform documentation",
+    "scope": "CI cloud authentication",
+    "use": "OIDC enables workflows to obtain short-lived tokens rather than relying solely on stored long-lived cloud credentials.",
+    "caveat": "Only relevant when GitHub Actions authenticates to compatible external services."
+  },
+  {
+    "id": "S072",
+    "title": "GitHub Actions \u2014 Secure use reference",
+    "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+    "authority": "Primary platform documentation",
+    "scope": "Workflow security",
+    "use": "Least privilege, secrets handling, third-party action risk, and safe handling of untrusted values in workflows.",
+    "caveat": "GitHub Actions-specific."
+  },
+  {
+    "id": "S073",
+    "title": "GitHub Actions \u2014 Script injections",
+    "url": "https://docs.github.com/en/actions/concepts/security/script-injections",
+    "authority": "Primary platform documentation",
+    "scope": "Untrusted workflow input",
+    "use": "Repository/PR metadata can be attacker-controlled and must not be interpolated directly into executable scripts.",
+    "caveat": "GitHub Actions-specific manifestation of a general untrusted-input principle."
+  },
+  {
+    "id": "S074",
+    "title": "OWASP CI/CD Security Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/CI_CD_Security_Cheat_Sheet.html",
+    "authority": "Industry security guidance",
+    "scope": "CI/CD attack surface",
+    "use": "CI/CD is privileged infrastructure; least privilege, pipeline integrity, secret hygiene, dependency-chain and poisoned-pipeline risks matter.",
+    "caveat": "Exact mitigations depend on the CI platform and threat model."
+  },
+  {
+    "id": "S075",
+    "title": "CISA et al. \u2014 Shifting the Balance of Cybersecurity Risk: Secure by Design and Default",
+    "url": "https://www.cisa.gov/sites/default/files/2023-06/principles_approaches_for_security-by-design-default_508c.pdf",
+    "authority": "Multi-government secure-by-design guidance",
+    "scope": "Secure defaults and customer burden",
+    "use": "Secure configuration should be the default and security complexity should not be pushed onto customers.",
+    "caveat": "Product-manufacturer guidance; exact controls depend on product surface."
+  },
+  {
+    "id": "S076",
+    "title": "CISA \u2014 Eliminating Buffer Overflow Vulnerabilities",
+    "url": "https://www.cisa.gov/sites/default/files/2025-02/secure-by-design-alert-eliminating-buffer-overflow-vulnerabilities-508c.pdf",
+    "authority": "US government secure-by-design guidance",
+    "scope": "Memory safety",
+    "use": "Where feasible, memory-safe languages and safer toolchains reduce entire classes of memory-safety defects, especially in new/high-risk code.",
+    "caveat": "Does not justify rewriting every existing C/C++ codebase or choosing a low-level memory-safe language for unrelated application work."
+  },
+  {
+    "id": "S077",
+    "title": "CISA/FBI \u2014 Product Security Bad Practices update",
+    "url": "https://www.cisa.gov/news-events/alerts/2025/01/17/cisa-and-fbi-release-updated-guidance-product-security-bad-practices",
+    "authority": "US government secure-by-design guidance",
+    "scope": "Product security",
+    "use": "Prioritize secure design, reduce known defect classes, and avoid shifting security burden to customers.",
+    "caveat": "Originally aimed at products supporting critical infrastructure; broader applicability should remain risk-proportional."
+  },
+  {
+    "id": "S078",
+    "title": "The Twelve-Factor App \u2014 Config",
+    "url": "https://www.12factor.net/config",
+    "authority": "Influential practitioner methodology",
+    "scope": "Deploy-varying service configuration",
+    "use": "Separates deploy-varying configuration/credentials from source code.",
+    "caveat": "Environment variables are not a universal mechanism for desktop/local/embedded software; use the separation principle, not dogma."
+  },
+  {
+    "id": "S079",
+    "title": "OWASP Input Validation Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+    "authority": "Industry security guidance",
+    "scope": "Untrusted input",
+    "use": "Validate untrusted data early, syntactically and semantically; prefer trusted/server-side enforcement and framework validators.",
+    "caveat": "Allowlisting is strongest for structured/fixed inputs; free-form text requires more nuanced validation."
+  },
+  {
+    "id": "S080",
+    "title": "OWASP Logging Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+    "authority": "Industry security guidance",
+    "scope": "Application logging",
+    "use": "Logs should avoid secrets/sensitive data, remain useful, and be protected from tampering/abuse.",
+    "caveat": "Logging volume/content is operationally and legally context-dependent."
+  },
+  {
+    "id": "S081",
+    "title": "OWASP Database Security Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html",
+    "authority": "Industry security guidance",
+    "scope": "Database credentials/permissions/configuration",
+    "use": "Database identities should use least privilege; credentials must not be hard-coded; backup/security configuration matters.",
+    "caveat": "Specific permission granularity and storage mechanisms differ by database/environment."
+  },
+  {
+    "id": "S082",
+    "title": "PostgreSQL \u2014 Transactions",
+    "url": "https://www.postgresql.org/docs/19/tutorial-transactions.html",
+    "authority": "Primary project documentation",
+    "scope": "Transactional atomicity",
+    "use": "Multi-step changes can be committed or rolled back as a unit.",
+    "caveat": "PostgreSQL mechanics are specific; transactional concepts generalize to capable stores."
+  },
+  {
+    "id": "S083",
+    "title": "PostgreSQL \u2014 Constraints",
+    "url": "https://www.postgresql.org/docs/17/ddl-constraints.html",
+    "authority": "Primary project documentation",
+    "scope": "Data integrity constraints",
+    "use": "NOT NULL, UNIQUE, PK, FK and CHECK-like constraints can enforce invariants at the datastore boundary.",
+    "caveat": "Exact constraint features/performance differ by database."
+  },
+  {
+    "id": "S084",
+    "title": "Azure Architecture Center \u2014 Asynchronous Messaging Options",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/messaging",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Message delivery/idempotency",
+    "use": "Duplicate delivery is a real distributed-system concern; consumers often need idempotent handling.",
+    "caveat": "Only relevant when asynchronous messaging/at-least-once delivery exists."
+  },
+  {
+    "id": "S085",
+    "title": "Azure Architecture Center \u2014 Microservices Assessment and Readiness",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/microservices-assessment",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Microservices readiness/tradeoffs",
+    "use": "Microservices require business, organizational, infrastructure, deployment, testing and operational readiness; gaps should be prioritized by impact.",
+    "caveat": "Azure/cloud perspective; use the readiness/tradeoff principle rather than Azure-specific platform choices."
+  },
+  {
+    "id": "S086",
+    "title": "Azure Architecture Center \u2014 Microservices architecture style",
+    "url": "https://learn.microsoft.com/azure/architecture/guide/architecture-styles/microservices",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Microservices tradeoffs",
+    "use": "Microservices increase system-wide complexity, distributed consistency/testing/communication and governance burden.",
+    "caveat": "Does not mean monoliths are always preferable."
+  },
+  {
+    "id": "S087",
+    "title": "Azure Architecture Center \u2014 Cache-Aside Pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Caching tradeoffs",
+    "use": "Caching introduces expiration, consistency, invalidation, capacity and multi-instance behavior that must be justified by access patterns.",
+    "caveat": "Azure examples are implementation-specific; caching tradeoffs generalize."
+  },
+  {
+    "id": "S088",
+    "title": "Microsoft Research \u2014 Principles of Eventual Consistency",
+    "url": "https://www.microsoft.com/en-us/research/publication/principles-of-eventual-consistency/",
+    "authority": "Research publication",
+    "scope": "Distributed consistency",
+    "use": "Eventual consistency is a deliberate semantic tradeoff, not a free scalability feature.",
+    "caveat": "Formal distributed-systems context; most simple applications should avoid introducing such complexity without need."
+  },
+  {
+    "id": "S089",
+    "title": "Cargo Book \u2014 Cargo.toml vs Cargo.lock",
+    "url": "https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Dependency manifest vs resolved lock state",
+    "use": "Manifest constraints and exact resolved lock state serve different purposes.",
+    "caveat": "Rust-specific; other ecosystems differ."
+  },
+  {
+    "id": "S090",
+    "title": "Cargo Book \u2014 FAQ: Cargo.lock in version control",
+    "url": "https://doc.rust-lang.org/cargo/faq.html",
+    "authority": "Primary ecosystem documentation",
+    "scope": "Application/library dependency locking",
+    "use": "Lockfile needs differ by package role; deterministic end products and reusable libraries have different dependency-resolution concerns.",
+    "caveat": "Rust-specific evidence supporting a broader 'preserve ecosystem semantics' rule."
+  },
+  {
+    "id": "S091",
+    "title": "Python Packaging \u2014 Dependency specifiers",
+    "url": "https://packaging.python.org/en/latest/specifications/dependency-specifiers/",
+    "authority": "Primary ecosystem specification",
+    "scope": "Dependency requirements",
+    "use": "Python package dependencies may intentionally express version ranges, markers, extras or exact artifacts rather than one universal pin style.",
+    "caveat": "Does not by itself prescribe application lock strategy."
+  },
+  {
+    "id": "S092",
+    "title": "OpenSSF Scorecard \u2014 Beginner checks",
+    "url": "https://github.com/ossf/scorecard/blob/main/docs/beginner-checks.md",
+    "authority": "OpenSSF security project",
+    "scope": "Dependency/update/workflow security",
+    "use": "Pinned dependencies should be paired with a process/tool for updates; token permissions should be least-privilege.",
+    "caveat": "OpenSSF scoring/remediation is guidance, not a universal project score."
+  },
+  {
+    "id": "S093",
+    "title": "CISA \u2014 Secure by Demand Guide",
+    "url": "https://www.cisa.gov/sites/default/files/2024-08/SecureByDemandGuide_080624_508c.pdf",
+    "authority": "US government secure-by-design guidance",
+    "scope": "Software product security evidence",
+    "use": "SBOMs and vulnerability-class elimination are useful product/security evidence; secure building blocks reduce user/developer burden.",
+    "caveat": "Procurement/product guidance; not every internal tool needs a formal SBOM."
+  },
+  {
+    "id": "S094",
+    "title": "Azure Architecture Center \u2014 Retry Pattern",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/retry",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Retry/idempotency",
+    "use": "Retries need exception classification, bounded policy and idempotency awareness.",
+    "caveat": "Remote/transient failures only."
+  },
+  {
+    "id": "S095",
+    "title": "AWS Prescriptive Guidance \u2014 Transactional outbox pattern",
+    "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html",
+    "authority": "Major vendor architecture guidance",
+    "scope": "Atomic DB + event workflows",
+    "use": "When a database update must reliably result in an event, naive dual writes can fail; transactional outbox and idempotent consumers are one applicable pattern.",
+    "caveat": "Only applies to event-driven dual-write problems; do not add an outbox to ordinary CRUD apps."
+  },
+  {
+    "id": "S096",
+    "title": "GitHub Actions \u2014 Script injection security",
+    "url": "https://docs.github.com/en/actions/concepts/security/script-injections",
+    "authority": "Primary platform documentation",
+    "scope": "Workflow generated code safety",
+    "use": "Untrusted PR/issue/branch metadata can become command injection when interpolated into generated scripts.",
+    "caveat": "GitHub Actions-specific implementation."
+  },
+  {
+    "id": "S097",
+    "title": "Liquibase \u2014 Expand-Contract Pattern",
+    "url": "https://www.liquibase.com/technical-glossary/expand-contract-pattern",
+    "authority": "Primary database-migration tool guidance",
+    "scope": "Backward-compatible schema evolution",
+    "use": "For rolling/zero-downtime systems, breaking schema changes can be decomposed into additive/migrate/remove phases.",
+    "caveat": "Vendor pattern guidance; only necessary when old/new application versions overlap or downtime must be avoided."
+  },
+  {
+    "id": "S098",
+    "title": "CycloneDX \u2014 Vulnerability Exploitability eXchange (VEX)",
+    "url": "https://www.cyclonedx.org/capabilities/vex/",
+    "authority": "OWASP/Ecma supply-chain standard capability",
+    "scope": "Vulnerability applicability/exploitability context",
+    "use": "Distinguishes a vulnerable component finding from whether the specific product context is actually affected/exploitable.",
+    "caveat": "VEX statements require trustworthy evidence; Koda must not manufacture 'not affected' claims."
+  },
+  {
+    "id": "S099",
+    "title": "OpenVEX Specification",
+    "url": "https://github.com/openvex/spec",
+    "authority": "Community specification aligned to CISA VEX requirements",
+    "scope": "Machine-readable vulnerability impact status",
+    "use": "Shows vulnerability status is product-contextual and can represent fixed/not-affected/investigating states.",
+    "caveat": "OpenVEX is a draft/community format; do not require it universally."
+  },
+  {
+    "id": "S100",
+    "title": "GitHub \u2014 Configure dependency review action",
+    "url": "https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-dependency-review-action",
+    "authority": "Primary platform documentation",
+    "scope": "Dependency vulnerability/license policy",
+    "use": "Dependency review thresholds are configurable by vulnerability severity/scope and can enforce organization-specific license policy.",
+    "caveat": "GitHub-specific and license acceptability is policy/legal context, not Koda judgment."
+  }
+]

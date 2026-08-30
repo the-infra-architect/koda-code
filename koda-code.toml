@@ -1,0 +1,53 @@
+[project]
+display_name = "Koda-Code"
+state_directory = ".koda-code"
+
+[[quality.checks]]
+name = "format"
+argv = ["python", "-m", "ruff", "format", "--check", "src", "tests"]
+timeout_seconds = 120
+
+[[quality.checks]]
+name = "lint"
+argv = ["python", "-m", "ruff", "check", "src", "tests"]
+timeout_seconds = 120
+
+[[quality.checks]]
+name = "types"
+argv = ["python", "-m", "mypy", "src"]
+timeout_seconds = 180
+
+[[quality.checks]]
+name = "vscode-runtime"
+argv = ["npm", "--prefix", ".vscode/koda-tools", "run", "check"]
+timeout_seconds = 300
+
+[[quality.checks]]
+name = "vscode-package"
+argv = ["npm", "--prefix", ".vscode/koda-tools", "run", "package"]
+timeout_seconds = 300
+
+[[quality.checks]]
+name = "tests"
+argv = ["python", "-m", "pytest", "--cov=koda_code", "--cov-report=term-missing", "--cov-report=xml"]
+timeout_seconds = 300
+
+[[quality.checks]]
+name = "build"
+argv = ["python", "-m", "build"]
+timeout_seconds = 300
+
+[[quality.checks]]
+name = "security"
+argv = ["python", "-m", "bandit", "-q", "-ll", "-r", "src"]
+timeout_seconds = 180
+
+[[quality.checks]]
+name = "secrets"
+argv = ["python", "-m", "koda_code.security"]
+timeout_seconds = 120
+
+[[quality.checks]]
+name = "dependencies"
+argv = ["python", "-m", "pip_audit"]
+timeout_seconds = 300
